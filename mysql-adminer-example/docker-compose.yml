@@ -1,0 +1,22 @@
+version: "3.7"
+
+services: 
+    db_1:
+        image: mysql
+        restart: always
+        environment: # permet de donner des variables d'evironnement pour l'app
+            - MYSQL_ROOT_PASSWORD=root
+    db_2:
+        image: mysql
+        environment: # permet de donner des variables d'evironnement pour l'app
+            - MYSQL_ROOT_PASSWORD=root 
+        volumes: # doss
+            - ./volume:/volumeDock
+            - ./db/init:/docker-entrypoint-initdb.d
+    adminer:
+        image: adminer
+        ports: 
+            - 8080:8080
+        depends_on: # ne demarre pas tant que les deux services ne sont pas up
+            - db_1
+            - db_2
