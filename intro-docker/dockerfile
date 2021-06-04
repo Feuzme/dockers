@@ -1,0 +1,18 @@
+# Image de base pour créer le docker
+FROM ubuntu:18.04
+
+# permet de copier un fichier dans le container
+COPY hello.sh /
+
+
+
+# Lance une commande en CLI
+
+# executé au build
+RUN touch test.sh
+
+# executé au lancement du container
+CMD ["bash", "/hello.sh"] 
+
+# Pour créer l'image : docker build -t nomDuContainer .
+# pour le lancer : docker run nomDuContainer

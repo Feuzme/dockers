@@ -1,0 +1,7 @@
+FROM node
+
+COPY  server /
+RUN npm i
+EXPOSE 8080
+
+CMD ["node", "server.js"]
